@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Seguros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="container mt-4">
+        <h1 class="text-center">Gestión de Seguros</h1>
+        
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="propietarios-tab" data-bs-toggle="tab" data-bs-target="#propietarios" type="button" role="tab">Propietarios</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="automoviles-tab" data-bs-toggle="tab" data-bs-target="#automoviles" type="button" role="tab">Automóviles</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="seguros-tab" data-bs-toggle="tab" data-bs-target="#seguros" type="button" role="tab">Seguros</button>
+            </li>
+        </ul>
+        
+        <div class="tab-content mt-3" id="myTabContent">
+            <div class="tab-pane fade show active" id="propietarios" role="tabpanel">
+                <h2>Propietarios</h2>
+                <button id="btn-add-p" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalPropietario">Añadir Propietario</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre Completo</th>
+                            <th>Edad</th>
+                            <th>Automóviles</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-propietarios"></tbody>
+                </table>
+            </div>
+            
+            <div class="tab-pane fade" id="automoviles" role="tabpanel">
+                <h2>Automóviles</h2>
+                <button id="btn-add-a" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalAutomovil">Añadir Automóvil</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Modelo</th>
+                            <th>Valor</th>
+                            <th>Accidentes</th>
+                            <th>Propietario</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-automoviles"></tbody>
+                </table>
+            </div>
+            
+            <div class="tab-pane fade" id="seguros" role="tabpanel">
+                <h2>Seguros</h2>
+                <button id="btn-add-s" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalSeguro">Añadir Seguro</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Costo Total</th>
+                            <th>Propietario del Automóvil</th>
+                            <th>Automóvil</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-seguros"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPropietario" tabindex="-1" aria-labelledby="modalPropietarioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalPropietarioLabel">Añadir Propietario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formPropietario">
+                        <div class="mb-3">
+                            <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="nombreCompleto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edad" class="form-label">Edad</label>
+                            <input type="number" class="form-control" id="edad" required>
+                        </div>
+                        <button id="btn-propietario" type="submit" class="btn btn-primary">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para añadir automóvil -->
+    <div class="modal fade" id="modalAutomovil" tabindex="-1" aria-labelledby="modalAutomovilLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAutomovilLabel">Añadir Automóvil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAutomovil">
+                        <div class="mb-3">
+                            <label for="modelo" class="form-label">Modelo</label>
+                            <input type="text" class="form-control" id="modelo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="valor" class="form-label">Valor</label>
+                            <input type="number" class="form-control" id="valor" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="accidentes" class="form-label">Accidentes</label>
+                            <input type="number" class="form-control" id="accidentes" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="propietarioId" class="form-label">Propietario</label>
+                            <select class="form-select propietarioId" required></select>
+                        </div>
+                        <button id="btn-automovil" type="submit" class="btn btn-primary">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalSeguro" tabindex="-1" aria-labelledby="modalSeguroLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalSeguroLabel">Añadir Seguro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formSeguro">
+                        <div class="mb-3">
+                            <label for="costoTotal" class="form-label">Costo Total</label>
+                            <input type="number" class="form-control" id="costoTotal" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="propietarioId" class="form-label">Propietario</label>
+                            <select class="form-select propietarioId" required></select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="automovilId" class="form-label">Automóvil</label>
+                            <select id="automovilId" class="form-select" required></select>
+                        </div>
+                        <button id="btn-seguro" type="submit" class="btn btn-primary">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
